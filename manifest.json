@@ -1,0 +1,6 @@
+{
+  "name": "Google Chrome Minesweeper Solver",
+  "description": "Solves minesweeper.",
+  "version": "1.0",
+  "manifest_version": 3
+}
