@@ -15,4 +15,14 @@ activatebutton.addEventListener("click", async () => {
 
 function addsolver(tab) {
 	console.log('Correct url');
+	chrome.scripting.executeScript({
+		target: { tabId: tab.id },
+		function: doSomething,
+	});
+}
+
+function doSomething() {
+	let board_controller = 'c20dae'
+	let board = document.querySelector('[jscontroller=',board_controller,']');
+	console.log(board);
 }
