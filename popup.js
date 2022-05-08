@@ -3,7 +3,7 @@ activatebutton.addEventListener("click", async () => {
 	let tab = await chrome.tabs.query({ active: true, currentWindow: true });
 	console.log(tab);
 	
-	let url = tab.url;
+	let url = tab[0].url;
 	if (url.slice(0,29) == 'https://www.google.com/search') {
 		if (url.includes('q=minesweeper&')) {
 			addsolver();
