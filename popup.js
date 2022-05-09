@@ -22,7 +22,7 @@ function addsolver(tab) {
 }
 
 function doSomething() {
-	let board_controller = 'c20dae'
-	let board = document.querySelector('[jscontroller=',board_controller,']');
+	let board_controller = '[jscontroller=c20dae]';
+	let board = document.querySelector(board_controller);
 	console.log(board);
 }
