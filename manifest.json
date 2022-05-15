@@ -16,7 +16,6 @@
       "128": "/images/flag128.png"
     }
   },
-  "content_scripts": [{"matches": ["https://www.google.com/search*\?minesweeper&*"], "js": ["solve.js"]}]
   "icons": {
     "16": "/images/flag16.png",
     "32": "/images/flag32.png",
