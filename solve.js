@@ -18,8 +18,8 @@ function solve() {
 	let canvas_name = '[jsname=UzWXSb]'
 	let originalCanvas = document.querySelector(canvas_name);
 	var originalPos = findPos(originalCanvas);
-	originalCTX = originalCanvas.getContext("2d");
-	
+	originalCTX = originalCanvas.getContext("2d");	
+
 	//newCanvas is for drawing on
 	let newCanvas = '<canvas id="newCanvas" width="540" height="420" style="width: 540px; height: 420px; position: absolute; left: 0; z-index: 2; pointer-events: none;"></canvas>'
 	document.querySelector(canvas_name).insertAdjacentHTML("afterend", newCanvas);
@@ -28,13 +28,22 @@ function solve() {
 
 	var x = 0;
 	var y = 0;
+	var squareX = 0;
+	var squareY = 0;
 	document.addEventListener('mousemove', function (e) {
 		x = e.pageX - originalPos.x;
 		y = e.pageY - originalPos.y;
 		if ((x >= 0 && x < 540) && (y >= 0 && y < 420)) {
-			console.log(`x: ${x}, y: ${y}`);
-			newCTX.fillStyle = "rgb(255,0, 0)";
-			newCTX.fillRect(Math.floor(x/30)*30, Math.floor(y/30)*30, 30, 30);
+			//console.log(`x: ${x}, y: ${y}`);
+			if ((Math.floor(x/30) != squareX) || (Math.floor(y/30) != squareY)) {
+				squareX = Math.floor(x/30);
+				squareY = Math.floor(y/30);
+				newCTX.clearRect(0, 0, 540, 420);
+				newCTX.fillStyle = "rgb(255,0, 0)";
+				newCTX.fillRect(squareX*30, squareY*30, 30, 30);
+				var data = originalCTX.getImageData(squareX*30 + 15, squareY*30 + 15, 1, 1).data;
+				console.log(`%crgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`, `color: rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255});`);
+			}
 		}
 	});
 }
