@@ -1,3 +1,4 @@
+// This file and popup.html are currently not used
 let activatebutton = document.getElementById("activate");
 activatebutton.addEventListener("click", async () => {
 	let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
