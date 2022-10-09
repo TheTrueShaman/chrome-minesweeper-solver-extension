@@ -19,6 +19,7 @@ function solve() {
 	let originalCanvas = document.querySelector(canvas_name);
 	var originalPos = findPos(originalCanvas);
 	originalCTX = originalCanvas.getContext("2d");	
+	console.log(originalCTX.getContextAttributes().willReadFrequently);
 
 	//newCanvas is for drawing on
 	let newCanvas = '<canvas id="newCanvas" width="540" height="420" style="width: 540px; height: 420px; position: absolute; left: 0; z-index: 2; pointer-events: none;"></canvas>'
@@ -64,4 +65,8 @@ function findPos(obj) {
 
 //Instead of trying to click the place, highlight where they should click. Scan square values by number color.
 
-doSomething();
+console.log("Hello!");
+window.addEventListener('load', doSomething);
+var s = document.createElement('script');
+s.src = chrome.runtime.getURL('other.js');
+document.documentElement.appendChild(s);
