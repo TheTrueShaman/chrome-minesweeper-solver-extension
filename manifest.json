@@ -6,9 +6,21 @@
   "background": {
     "service_worker": "background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/fbx?fbx=minesweeper", "https://www.google.com/search?q=minesweeper*"],
+      "js": ["solve.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["other.js"],
+      "matches": ["https://www.google.com/*"]
+    }
+  ],
   "permissions": ["storage", "activeTab", "scripting"],
   "action": {
-    "default_popup": "popup.html",
     "default_icon": {
       "16": "/images/flag16.png",
       "32": "/images/flag32.png",
