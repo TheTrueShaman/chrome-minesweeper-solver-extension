@@ -52,15 +52,15 @@ function solve() {
 //findPos function from 
 //https://stackoverflow.com/questions/6735470/get-pixel-color-from-canvas-on-mousemove
 function findPos(obj) {
-    var curleft = 0, curtop = 0;
-    if (obj.offsetParent) {
-        do {
-            curleft += obj.offsetLeft;
-            curtop += obj.offsetTop;
-        } while (obj = obj.offsetParent);
-        return { x: curleft, y: curtop };
-    }
-    return undefined;
+	var curleft = 0, curtop = 0;
+	if (obj.offsetParent) {
+		do {
+			curleft += obj.offsetLeft;
+			curtop += obj.offsetTop;
+		} while (obj = obj.offsetParent);
+		return { x: curleft, y: curtop };
+	}
+	return undefined;
 }
 
 //Instead of trying to click the place, highlight where they should click. Scan square values by number color.
