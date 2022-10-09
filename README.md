@@ -2,3 +2,8 @@
 I'm going to try to make a chrome extension that will automatically solve google minesweeper. Why? Why not.
 
 This project is not finished, and is on hold as I'm not currently motivated to finish it.
+
+To do:
+* Accounting for square size differences in different difficulties
+* Number detection of squares
+* Implent the actual solver
