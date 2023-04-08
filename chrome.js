@@ -1,7 +1,3 @@
-if (window.location.href == "https://minesweeperonline.com") {
-	return;
-}
-
 function doSomething() {
 	if (!document.getElementById('solve')) {
 		let first_child = document.getElementById('EYPL8e').children[0];
