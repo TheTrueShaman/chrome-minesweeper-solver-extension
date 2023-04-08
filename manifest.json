@@ -8,9 +8,13 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://www.google.com/fbx?fbx=minesweeper", "https://www.google.com/search?q=minesweeper*", "https://minesweeperonline.com"],
-      "js": ["chrome.js", "online.js"],
+      "matches": ["https://www.google.com/fbx?fbx=minesweeper", "https://www.google.com/search?q=minesweeper*"],
+      "js": ["chrome.js"],
       "run_at": "document_start"
+    },
+    {
+      "matches": ["https://minesweeperonline.com/"],
+      "js": ["online.js"]
     }
   ],
   "web_accessible_resources": [
