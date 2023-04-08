@@ -18,6 +18,6 @@ function addsolver(tab) {
 	console.log('Correct url');
 	chrome.scripting.executeScript({
 		target: { tabId: tab.id },
-		files: ['solve.js'],
+		files: ['chrome.js'],
 	});
 }
