@@ -1,3 +1,7 @@
+if (window.location.href == "https://minesweeperonline.com") {
+	return;
+}
+
 function doSomething() {
 	if (!document.getElementById('solve')) {
 		let first_child = document.getElementById('EYPL8e').children[0];
@@ -63,8 +67,7 @@ function findPos(obj) {
 	return undefined;
 }
 
-//Instead of trying to click the place, highlight where they should click. Scan square values by number color.
-
+//Because you can't force move cursor, instead of trying to click the place, highlight where they should click. Scan square values by number color.
 console.log("Hello!");
 window.addEventListener('load', doSomething);
 var s = document.createElement('script');
