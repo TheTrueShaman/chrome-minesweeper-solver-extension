@@ -5,3 +5,5 @@ function fetchBoard() {
 	let x = document.getElementsByClassName("bordertb");
 	let y = tiles.length / x;
 }
+
+fetchBoard();
