@@ -12,10 +12,6 @@
       "js": ["chrome.js"],
       "run_at": "document_start"
     },
-    {
-      "matches": ["https://minesweeperonline.com/"],
-      "js": ["online.js"]
-    }
   ],
   "web_accessible_resources": [
     {
