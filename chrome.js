@@ -1,3 +1,7 @@
+const sizes = {360: {name: "Easy", width: 450, square: 36}, 
+	       420: {name: "Medium", width: 540, square: 30}, 
+	       500: {name: "Hard", width: 600, square: 25}};
+
 function doSomething() {
 	if (!document.getElementById('solve')) {
 		let first_child = document.getElementById('EYPL8e').children[0];
@@ -20,6 +24,8 @@ function solve() {
 	var originalPos = findPos(originalCanvas);
 	originalCTX = originalCanvas.getContext("2d");	
 	console.log(originalCTX.getContextAttributes().willReadFrequently);
+
+	let originalDimensions = {height: originalCanvas.height, width = originalCanvas.width};
 
 	//newCanvas is for drawing on
 	let newCanvas = '<canvas id="newCanvas" width="540" height="420" style="width: 540px; height: 420px; position: absolute; left: 0; z-index: 2; pointer-events: none;"></canvas>'
