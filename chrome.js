@@ -25,7 +25,7 @@ function solve() {
 	originalCTX = originalCanvas.getContext("2d");	
 	console.log(originalCTX.getContextAttributes().willReadFrequently);
 
-	let originalDimensions = {height: originalCanvas.height, width = originalCanvas.width};
+	let originalDimensions = {height: originalCanvas.height, width: originalCanvas.width};
 
 	//newCanvas is for drawing on
 	let newCanvas = '<canvas id="newCanvas" height="' + originalDimensions.height + '" width="' + originalDimensions.width +'" style="width: 540px; height: 420px; position: absolute; left: 0; z-index: 2; pointer-events: none;"></canvas>'
