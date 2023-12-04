@@ -28,7 +28,7 @@ function solve() {
 	let originalDimensions = {height: originalCanvas.height, width: originalCanvas.width};
 
 	//newCanvas is for drawing on
-	let newCanvas = '<canvas id="newCanvas" height="' + originalDimensions.height + '" width="' + originalDimensions.width +'" style="width: 540px; height: 420px; position: absolute; left: 0; z-index: 2; pointer-events: none;"></canvas>'
+	let newCanvas = '<canvas id="newCanvas" height="' + originalDimensions.height + '" width="' + originalDimensions.width +'" style="position: absolute; left: 0; z-index: 2; pointer-events: none;"></canvas>'
 	document.querySelector(canvas_name).insertAdjacentHTML("afterend", newCanvas);
 	newCanvas = document.getElementById('newCanvas');
 	newCTX = newCanvas.getContext("2d");
@@ -37,7 +37,7 @@ function solve() {
 		console.error("Unrecognized board size");
 		return;
 	}
-	if (!sizes[originalDimensions.height] === originalDimensions.width) {
+	if (sizes[originalDimensions.height]["width"] != originalDimensions.width) {
 		console.error("Unrecognized board size");
 		return;
 	}
