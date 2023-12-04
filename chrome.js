@@ -1,4 +1,4 @@
-const sizes = {360: {name: "Easy", width: 450, square: 36}, 
+const sizes = {360: {name: "Easy", width: 450, square: 45}, 
 	       420: {name: "Medium", width: 540, square: 30}, 
 	       500: {name: "Hard", width: 600, square: 25}};
 
