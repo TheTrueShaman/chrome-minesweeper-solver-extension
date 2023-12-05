@@ -2,6 +2,11 @@ const sizes = {360: {name: "Easy", width: 450, square: 45},
 	       420: {name: "Medium", width: 540, square: 30}, 
 	       500: {name: "Hard", width: 600, square: 25}};
 
+const colors = {"X": {lower: [160, 205, 70], upper: [195, 225, 130]},
+		"1": {lower: [40, 120, 200], upper: [45, 125, 210]},
+		"2": {lower: [170, 170, 125], upper: [185, 185, 135]}
+	       };
+
 function doSomething() {
 	if (!document.getElementById('solve')) {
 		let first_child = document.getElementById('EYPL8e').children[0];
