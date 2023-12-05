@@ -3,8 +3,10 @@ const sizes = {360: {name: "Easy", width: 450, square: 45},
 	       500: {name: "Hard", width: 600, square: 25}};
 
 const colors = {"X": {lower: [160, 205, 70], upper: [195, 225, 130]},
+		"0": {lower: [215, 180, 150], upper: [230, 195, 160]},
 		"1": {lower: [40, 120, 200], upper: [45, 125, 210]},
-		"2": {lower: [170, 170, 125], upper: [185, 185, 135]}
+		"2": {lower: [170, 170, 125], upper: [185, 185, 135]},
+		"3": {lower: [210, 45, 45], upper: [215, 50, 50]}
 	       };
 
 function doSomething() {
@@ -68,9 +70,30 @@ function solve() {
 				newCTX.fillRect(squareX*squareSize, squareY*squareSize, squareSize, squareSize);
 				var data = originalCTX.getImageData(squareX*squareSize + squareSize/2, squareY*squareSize + squareSize/2, 1, 1).data;
 				console.log(`%crgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`, `color: rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255});`);
+				console.log(determineTileNumber(data[0], data[1], data[2]));
 			}
 		}
 	});
+}
+
+function determineTileNumber(r, g, b) {
+	for (const key in colors) {
+		const color = colors[key];
+		if (!(r >= color['lower'][0] && r <= color['upper'][0]) {
+			continue;
+		}
+		if (!(g >= color['lower'][1] && g <= color['upper'][1]) {
+			continue;
+		}
+		if (!(b >= color['lower'][2] && b <= color['upper'][2]) {
+			continue;
+		}
+		// If we're here, one color matched perfectly
+		return key;
+	}
+	// If we're here, no matches were found.
+	console.error("Unknown tile color");
+	return "Unknown";
 }
 
 //findPos function from 
