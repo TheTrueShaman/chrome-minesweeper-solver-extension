@@ -68,6 +68,7 @@ function solve() {
 				newCTX.clearRect(0, 0, boardWidth, boardHeight);
 				newCTX.fillStyle = "rgb(255,0, 0)";				
 				newCTX.fillRect(squareX*squareSize, squareY*squareSize, squareSize, squareSize);
+				// Find way to take multiple pixels and take their average, so that color detection does not break on different sizes.
 				var data = originalCTX.getImageData(squareX*squareSize + squareSize/2, squareY*squareSize + squareSize/2, 1, 1).data;
 				console.log(`%crgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`, `color: rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255});`);
 				console.log(determineTileNumber(data[0], data[1], data[2]));
@@ -79,13 +80,13 @@ function solve() {
 function determineTileNumber(r, g, b) {
 	for (const key in colors) {
 		const color = colors[key];
-		if (!(r >= color['lower'][0] && r <= color['upper'][0]) {
+		if (!(r >= color['lower'][0] && r <= color['upper'][0])) {
 			continue;
 		}
-		if (!(g >= color['lower'][1] && g <= color['upper'][1]) {
+		if (!(g >= color['lower'][1] && g <= color['upper'][1])) {
 			continue;
 		}
-		if (!(b >= color['lower'][2] && b <= color['upper'][2]) {
+		if (!(b >= color['lower'][2] && b <= color['upper'][2])) {
 			continue;
 		}
 		// If we're here, one color matched perfectly
