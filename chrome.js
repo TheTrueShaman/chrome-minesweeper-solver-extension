@@ -4,7 +4,7 @@ const sizes = {360: {name: "Easy", width: 450, square: 45},
 
 const colors = {"X": {lower: [160, 205, 70], upper: [195, 225, 130]},
 		"0": {lower: [215, 180, 150], upper: [230, 195, 160]},
-		"1": {lower: [40, 120, 200], upper: [45, 125, 210]},
+		"1": {lower: [192, 177, 147], upper: [218, 202, 185]},
 		"2": {lower: [170, 170, 125], upper: [185, 185, 135]},
 		"3": {lower: [210, 45, 45], upper: [215, 50, 50]}
 	       };
@@ -68,13 +68,49 @@ function solve() {
 				newCTX.clearRect(0, 0, boardWidth, boardHeight);
 				newCTX.fillStyle = "rgb(255,0, 0)";				
 				newCTX.fillRect(squareX*squareSize, squareY*squareSize, squareSize, squareSize);
-				// Find way to take multiple pixels and take their average, so that color detection does not break on different sizes.
-				var data = originalCTX.getImageData(squareX*squareSize + squareSize/2, squareY*squareSize + squareSize/2, 1, 1).data;
+				var imageData = originalCTX.getImageData(squareX*squareSize, squareY*squareSize, squareSize, squareSize).data;
+				let data = tileColor(imageData);
 				console.log(`%crgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`, `color: rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255});`);
 				console.log(determineTileNumber(data[0], data[1], data[2]));
 			}
 		}
 	});
+}
+
+function tileColor(imageData) {
+	let backgroundColors = [[215, 184, 153], [225, 202, 179], [229, 194, 159], [236, 209, 183], [135, 175, 58]];
+	let average = [0, 0, 0, 0];
+	let count = 0;
+	let next = false;
+	for (let i = 0; i < imageData.length/4; i++) {
+		for (let j = 0; j < backgroundColors.length; j++) {
+			if (imageData[i*4] != backgroundColors[j][0]) {
+				continue;
+			}
+			if (imageData[i*4+1] != backgroundColors[j][1]) {
+				continue;
+			}
+			if (imageData[i*4+2] == backgroundColors[j][2]) {
+				next = true;
+				break;
+			}
+		}
+		if (next) { 
+			next = false;
+			continue;
+		}
+		for (let k = 0; k < 4; k++) {
+			average[k] += imageData[i*4+k];
+		}
+		count += 1;
+	}
+	for (let j = 0; j < 4; j++) {
+		average[j] = average[j]/(count);
+	}
+	if (isNaN(average[0])) {
+		average = [215, 184, 153, 255];
+	}
+	return average;
 }
 
 function determineTileNumber(r, g, b) {
