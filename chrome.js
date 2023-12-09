@@ -6,7 +6,7 @@ const colors = {"X": {lower: [160, 205, 70], upper: [195, 225, 130]},
 		"0": {lower: [215, 180, 150], upper: [230, 195, 160]},
 		"1": {lower: [110, 145, 165], upper: [130, 160, 200]},
 		"2": {lower: [120, 155, 95], upper: [135, 175, 115]},
-		"3": {lower: [210, 105, 90], upper: [220, 120, 110]},
+		"3": {lower: [210, 105, 90], upper: [225, 120, 110]},
 		"4": {lower: [155, 90, 155], upper: [170, 100, 165]}
 	       };
 
@@ -58,9 +58,30 @@ function solve() {
 	let y = 0;
 	let squareX = 0;
 	let squareY = 0;
+
+	let detect = true;
+	let timeOutAmounts = 0;
+
+	document.addEventListener('click', function (e) {
+		x = e.pageX - originalPos.x;
+		y = e.pageY - originalPos.y;
+		if ((x >= 0 && x < boardWidth) && (y >= 0 && y < boardHeight)) {
+			detect = false;
+			timeOutAmounts += 1;
+			setTimeout(() => {
+				timeOutAmounts -= 1;
+				if (timeOutAmounts == 0) {
+					detect = true;
+				}
+			}, "1000");
+		}
+	})
 	
 	//TODO: Implement pausing of tile scanning during animations (such as clicking on a tile), as this breaks tile color detection.
 	document.addEventListener('mousemove', function (e) {
+		if (!detect) {
+			return;
+		}
 		x = e.pageX - originalPos.x;
 		y = e.pageY - originalPos.y;
 		if ((x >= 0 && x < boardWidth) && (y >= 0 && y < boardHeight)) {
