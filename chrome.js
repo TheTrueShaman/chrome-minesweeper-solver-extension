@@ -4,9 +4,10 @@ const sizes = {360: {name: "Easy", width: 450, square: 45},
 
 const colors = {"X": {lower: [160, 205, 70], upper: [195, 225, 130]},
 		"0": {lower: [215, 180, 150], upper: [230, 195, 160]},
-		"1": {lower: [192, 177, 147], upper: [218, 202, 185]},
-		"2": {lower: [170, 170, 125], upper: [185, 185, 135]},
-		"3": {lower: [210, 45, 45], upper: [215, 50, 50]}
+		"1": {lower: [110, 145, 165], upper: [130, 160, 200]},
+		"2": {lower: [120, 155, 95], upper: [135, 175, 115]},
+		"3": {lower: [210, 105, 90], upper: [220, 120, 110]},
+		"4": {lower: [155, 90, 155], upper: [170, 100, 165]}
 	       };
 
 function doSomething() {
@@ -57,6 +58,8 @@ function solve() {
 	let y = 0;
 	let squareX = 0;
 	let squareY = 0;
+	
+	//TODO: Implement pausing of tile scanning during animations (such as clicking on a tile), as this breaks tile color detection.
 	document.addEventListener('mousemove', function (e) {
 		x = e.pageX - originalPos.x;
 		y = e.pageY - originalPos.y;
@@ -71,7 +74,8 @@ function solve() {
 				var imageData = originalCTX.getImageData(squareX*squareSize, squareY*squareSize, squareSize, squareSize).data;
 				let data = tileColor(imageData);
 				console.log(`%crgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`, `color: rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255});`);
-				console.log(determineTileNumber(data[0], data[1], data[2]));
+				let number = determineTileNumber(data[0], data[1], data[2]);
+				console.log(number);
 			}
 		}
 	});
